@@ -1,6 +1,9 @@
 import React from "react";
 
 export const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <form>
       <div class="form-group">
@@ -8,6 +11,7 @@ export const Signup = () => {
         <input
           type="email"
           class="form-control"
+          onChange={(e) => setEmail(e.target.value)}
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
@@ -21,6 +25,7 @@ export const Signup = () => {
         <input
           type="password"
           class="form-control"
+          onChange={(e) => setPassword(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Password"
         />
