@@ -30,3 +30,27 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     return f"The new user {request_body['email']} was created successfully", 200
+
+@api.route('/signup/<int:signup_id>', methods=['DELETE'])
+def delete_user():
+    user = user.get.query(user_id)
+    if user is None:
+        raise APIException('User not found', status_code=404)
+    db.session.delete(user)
+    db.session.commit()
+    return f"The user was deleted successfully", 200
+
+
+@api.route('/login', methods=['POST'])
+def create_login():
+    request_body = request.get_json()
+    new_login = Login(email=request_body["email"], password=request_body["password"])
+    db.session.add(new_login)
+    db.session.commit()
+    return f"the new login {request_body['email']} was created successfully", 200
+
+@api.route('/private', methods=['GET'])
+def get_private():
+    private = Private.query.all()
+    private_list = list(map(lambda i: i.serialize(), private))
+    return jsonify(private_list), 200

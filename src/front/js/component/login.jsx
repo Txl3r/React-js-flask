@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Signup = () => {
+export const Login = () => {
   return (
     <form>
       <div class="form-group">
@@ -25,23 +25,14 @@ export const Signup = () => {
           placeholder="Password"
         />
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Confirm Password</label>
-        <input
-          type="password"
-          class="form-control"
-          id="exampleInputPassword1"
-          placeholder="Password"
-        />
-      </div>
       <div class="form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
         <label class="form-check-label" for="exampleCheck1">
-          Is Active
+          Check me out
         </label>
       </div>
       <button type="submit" class="btn btn-primary">
-        Sign Up
+        Submit
       </button>
     </form>
   );
