@@ -45,10 +45,10 @@ def delete_user():
 @api.route('/login', methods=['POST'])
 def create_login():
     request_body = request.get_json()
-    new_login = Login(email=request_body["email"], password=request_body["password"])
-    db.session.add(new_login)
-    db.session.commit()
-    return f"the new login {request_body['email']} was created successfully", 200
+    request_body = user.query.filter(user.email) == response_body['email']
+    if user is None:
+        return 404
+    
 
 @api.route('/private', methods=['GET'])
 def get_private():
