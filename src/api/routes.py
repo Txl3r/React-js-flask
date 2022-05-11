@@ -26,7 +26,7 @@ def get_user():
 @api.route('/signup', methods=['POST'])
 def create_user():
     request_body = request.get_json()
-    new_user = User(email=request_body["email"], password=request_body["password"], is_active=request_body["is_active"])
+    new_user = User(email=request_body["email"], password=request_body["password"], first_name=request_body["first_name"], last_name=request_body["last_name"], dob=request_body["dob"])
     db.session.add(new_user)
     db.session.commit()
     return f"The new user {request_body['email']} was created successfully", 200
@@ -39,6 +39,7 @@ def delete_user():
     db.session.delete(user)
     db.session.commit()
     return f"The user was deleted successfully", 200
+
 
 
 @api.route('/login', methods=['POST'])
