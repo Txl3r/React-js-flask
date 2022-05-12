@@ -33,7 +33,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
-
+      logIn: (user) => {
+        fetch(
+          "https://3001-txl3r-reactjsflask-rv3683rgmdn.ws-us44.gitpod.io/api/protected",
+          {
+            method: "GET",
+            headers: {
+              "Content=Type": "application/json",
+            },
+            body: JSON.stringify(user),
+            redirect: "follow",
+          }
+        )
+          .then((response) => response.json())
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error));
+      },
       getMessage: () => {
         // fetching data from the backend
         fetch(process.env.BACKEND_URL + "/api/hello")
@@ -43,6 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.log("Error loading message from backend", error)
           );
       },
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();

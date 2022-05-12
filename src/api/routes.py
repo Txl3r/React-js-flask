@@ -5,7 +5,18 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
 api = Blueprint('api', __name__)
+
+@api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user = get_jwt_identity()
+    user = User.query.filter_by(email=current_user).first()
+    return jsonify({"first_name": user.first_name, "email":user.email}),200
 
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -45,9 +56,18 @@ def delete_user():
 @api.route('/login', methods=['POST'])
 def create_login():
     request_body = request.get_json()
-    request_body = user.query.filter(user.email) == response_body['email']
-    if user is None:
-        return 404
+    if "email" not in request_body or request_body['email'] == "":
+        raise APIException("User not found", status_code=404)
+    if "password" not in request_body or request_body['password'] == "":
+        raise APIException("User not found", status_code=404)
+
+    user = User.query.filter_by(email=request_body['email']).first()
+    print(user)
+    if user == None or request_body['password'] is user.password:
+        raise APIException("User not found or password inccorect", stauts_code=404)
+    else:
+        access_token = create_access_token(identity=request_body['email'])
+        return jsonify(access_token=access_token)
     
 
 @api.route('/private', methods=['GET'])
