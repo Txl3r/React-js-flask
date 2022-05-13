@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const Signup = () => {
+  const { actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
@@ -71,7 +73,15 @@ export const Signup = () => {
           placeholder="Enter date of birth"
         />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          actions.signUp(user);
+          history.push("/login");
+        }}
+        type="submit"
+        className="btn btn-primary"
+      >
         Sign Up
       </button>
     </form>

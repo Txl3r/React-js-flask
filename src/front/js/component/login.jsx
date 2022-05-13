@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const Login = () => {
+  const { actions } = useContext(Context);
   return (
     <form>
       <div className="form-group">
@@ -23,7 +25,15 @@ export const Login = () => {
           placeholder="Password"
         />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          actions.logIn(user);
+          history.push("/home");
+        }}
+        type="submit"
+        className="btn btn-primary"
+      >
         Login
       </button>
     </form>
