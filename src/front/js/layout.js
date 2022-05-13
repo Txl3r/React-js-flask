@@ -27,9 +27,9 @@ const Layout = () => {
             <Route exact path="/login">
               <Login />
             </Route>
-            <Route>
+            {/* <Route>
               <Home />
-            </Route>
+            </Route> */}
             <Route>
               <h1>Not found!</h1>
             </Route>
