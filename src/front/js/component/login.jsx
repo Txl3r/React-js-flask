@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 
 export const Login = () => {
+  const { loggedin, setLoggedin } = useState("");
   const { actions } = useContext(Context);
   return (
     <form>
@@ -28,7 +29,7 @@ export const Login = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          actions.logIn(user);
+          actions.logIn(email, password);
           history.push("/home");
         }}
         type="submit"

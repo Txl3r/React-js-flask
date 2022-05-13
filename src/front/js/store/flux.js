@@ -33,7 +33,8 @@ const getState = ({ getStore, getActions, setStore }) => {
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
-      logIn: (user) => {
+      logIn: (email, password) => {
+        const user = { email: email, password: password };
         fetch(
           "https://3001-txl3r-reactjsflask-rv3683rgmdn.ws-us44.gitpod.io/api/protected",
           {
