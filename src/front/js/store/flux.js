@@ -17,13 +17,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       // Use getActions to call a function within a fuction
-      signUp: (user) => {
+      signUp: (email, password) => {
         fetch(process.env.BACKEND_URL + "/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(user),
+          body: JSON.stringify(email, password),
           redirect: "follow",
         })
           .then((response) => response.json())
@@ -35,17 +35,27 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       logIn: (email, password) => {
         const user = { email: email, password: password };
-        fetch(
-          "https://3001-txl3r-reactjsflask-rv3683rgmdn.ws-us44.gitpod.io/api/protected",
-          {
-            method: "GET",
-            headers: {
-              "Content=Type": "application/json",
-            },
-            body: JSON.stringify(user),
-            redirect: "follow",
-          }
-        )
+        fetch(process.env.BACKEND_URL + "/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+          redirect: "follow",
+        })
+          .then((response) => response.json())
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error));
+      },
+      private: () => {
+        fetch(process.env.BACKEND_URL + "/api/protected", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+          redirect: "Follow",
+        })
           .then((response) => response.json())
           .then((result) => console.log(result))
           .catch((error) => console.log(error));

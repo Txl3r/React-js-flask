@@ -1,9 +1,14 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 export const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { loggedin, setLoggedin } = useState("");
   const { actions } = useContext(Context);
+
+  const history = useHistory();
   return (
     <form>
       <div className="form-group">
@@ -11,6 +16,7 @@ export const Login = () => {
         <input
           type="email"
           className="form-control"
+          onChange={(e) => setEmail(e.target.value)}
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
@@ -22,6 +28,7 @@ export const Login = () => {
         <input
           type="password"
           className="form-control"
+          onChange={(e) => setPassword(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Password"
         />

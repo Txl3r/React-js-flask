@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import { useHistory } from "react-router-dom";
 
 export const Signup = () => {
   const { actions } = useContext(Context);
@@ -9,6 +10,7 @@ export const Signup = () => {
   const [lastname, setLastname] = useState("");
   const [dateofbirth, setDateofbirth] = useState("");
 
+  const history = useHistory();
   return (
     <form>
       <div className="form-group">
@@ -76,7 +78,7 @@ export const Signup = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          actions.signUp(user);
+          actions.signUp(email, password, firstname, lastname, dateofbirth);
           history.push("/login");
         }}
         type="submit"
