@@ -14,9 +14,10 @@ export const Login = () => {
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
         <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           type="email"
           className="form-control"
-          onChange={(e) => setEmail(e.target.value)}
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
@@ -26,9 +27,10 @@ export const Login = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Password</label>
         <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           className="form-control"
-          onChange={(e) => setPassword(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Password"
         />
@@ -36,7 +38,9 @@ export const Login = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          actions.logIn(email, password);
+          if (email == "" || password == "") {
+            alert("The input cannot be empty");
+          } else actions.logIn(email, password);
           history.push("/home");
         }}
         type="submit"

@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      user: {},
       message: null,
       demo: [
         {
@@ -44,21 +45,27 @@ const getState = ({ getStore, getActions, setStore }) => {
           redirect: "follow",
         })
           .then((response) => response.json())
-          .then((result) => console.log(result))
+          .then((result) => getActions().protected(result.access_token))
           .catch((error) => console.log(error));
       },
-      private: () => {
+      protected: (token) => {
         fetch(process.env.BACKEND_URL + "/api/protected", {
           method: "GET",
           headers: {
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(user),
-          redirect: "Follow",
+          redirect: "follow",
         })
           .then((response) => response.json())
-          .then((result) => console.log(result))
-          .catch((error) => console.log(error));
+          .then((result) => {
+            setStore({ user: result });
+          })
+          .catch((error) => console.log("error", error));
+      },
+      logout() {
+        this.authToken = null;
+        this.user = null;
+        localStorage.clear();
       },
       getMessage: () => {
         // fetching data from the backend

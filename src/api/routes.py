@@ -70,8 +70,4 @@ def create_login():
         return jsonify(access_token=access_token)
     
 
-@api.route('/private', methods=['GET'])
-def get_private():
-    private = Private.query.all()
-    private_list = list(map(lambda i: i.serialize(), private))
-    return jsonify(private_list), 200
+

@@ -16,9 +16,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
         <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           type="email"
           className="form-control"
-          onChange={(e) => setEmail(e.target.value)}
           id="exampleInputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
@@ -28,9 +29,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Password</label>
         <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           className="form-control"
-          onChange={(e) => setPassword(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Password"
         />
@@ -38,9 +40,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Confirm Password</label>
         <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           className="form-control"
-          onChange={(e) => setPassword(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Password"
         />
@@ -48,9 +51,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">First Name</label>
         <input
+          onChange={(e) => setFirstname(e.target.value)}
+          value={firstname}
           type="password"
           className="form-control"
-          onChange={(e) => setFirstname(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Name Here"
         />
@@ -58,9 +62,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Last Name</label>
         <input
+          onChange={(e) => setLastname(e.target.value)}
+          value={lastname}
           type="password"
           className="form-control"
-          onChange={(e) => setLastname(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Name Here"
         />
@@ -68,9 +73,10 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Date of Birth</label>
         <input
+          onChange={(e) => setDateofbirth(e.target.value)}
+          value={dateofbirth}
           type="password"
           className="form-control"
-          onChange={(e) => setDateofbirth(e.target.value)}
           id="exampleInputPassword1"
           placeholder="Enter date of birth"
         />
