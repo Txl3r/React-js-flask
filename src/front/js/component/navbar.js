@@ -14,12 +14,11 @@ export const Navbar = () => {
           <span className="navbar-brand mb-0 h1">Skynet</span>
         </Link>
         <div className="ml-auto">
-          {store.user ? (
+          {store.user.email ? (
             <button
               onClick={(e) => {
                 e.preventDefault();
                 actions.logout();
-                history.push("/login");
               }}
               className="btn btn-primary"
             >

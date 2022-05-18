@@ -5,7 +5,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   return (
     <>
-      {store.user ? (
+      {store.user.email ? (
         <div className="jumbotron">
           <h1 className="display-4">Hello, User!</h1>
           <p className="lead">

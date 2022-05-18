@@ -64,7 +64,7 @@ def create_login():
     user = User.query.filter_by(email=request_body['email']).first()
     print(user)
     if user == None or request_body['password'] is user.password:
-        raise APIException("User not found or password inccorect", stauts_code=404)
+        raise APIException("User not found or password inccorect", status_code=404)
     else:
         access_token = create_access_token(identity=request_body['email'])
         return jsonify(access_token=access_token)

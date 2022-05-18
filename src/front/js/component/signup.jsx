@@ -9,6 +9,7 @@ export const Signup = () => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [dateofbirth, setDateofbirth] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const history = useHistory();
   return (
@@ -40,8 +41,8 @@ export const Signup = () => {
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Confirm Password</label>
         <input
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          value={confirmPassword}
           type="password"
           className="form-control"
           id="exampleInputPassword1"
@@ -53,7 +54,7 @@ export const Signup = () => {
         <input
           onChange={(e) => setFirstname(e.target.value)}
           value={firstname}
-          type="password"
+          type="text"
           className="form-control"
           id="exampleInputPassword1"
           placeholder="Name Here"
@@ -64,7 +65,7 @@ export const Signup = () => {
         <input
           onChange={(e) => setLastname(e.target.value)}
           value={lastname}
-          type="password"
+          type="text"
           className="form-control"
           id="exampleInputPassword1"
           placeholder="Name Here"
@@ -75,7 +76,7 @@ export const Signup = () => {
         <input
           onChange={(e) => setDateofbirth(e.target.value)}
           value={dateofbirth}
-          type="password"
+          type="text"
           className="form-control"
           id="exampleInputPassword1"
           placeholder="Enter date of birth"
@@ -84,8 +85,18 @@ export const Signup = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          actions.signUp(email, password, firstname, lastname, dateofbirth);
-          history.push("/login");
+          if (password === confirmPassword) {
+            actions.signUp({
+              email: email,
+              password: password,
+              first_name: firstname,
+              last_name: lastname,
+              dob: dateofbirth,
+            });
+            history.push("/login");
+          } else {
+            alert("Password don't match");
+          }
         }}
         type="submit"
         className="btn btn-primary"

@@ -18,13 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       // Use getActions to call a function within a fuction
-      signUp: (email, password) => {
+      signUp: (user) => {
         fetch(process.env.BACKEND_URL + "/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(email, password),
+          body: JSON.stringify(user),
           redirect: "follow",
         })
           .then((response) => response.json())
@@ -63,9 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log("error", error));
       },
       logout() {
-        this.authToken = null;
-        this.user = null;
-        localStorage.clear();
+        setStore({ user: {} });
       },
       getMessage: () => {
         // fetching data from the backend
